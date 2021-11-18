@@ -84,12 +84,28 @@ body {
   text-align: center;
 }
 
-.logo {
-  height: 3rem;
+input{
+  background-color: #ffffff00; /* cor de fundo do input transparente */
+  border:none;
+  -webkit-appearance: none;
+  outline: none;
+  align-items: center;
+  text-align:center;
+}
+
+input:focus{
+  border:none;
+  -webkit-appearance: none;
+}
+
+.logo{
+  height: 2.5rem;
+  width: auto;
+  padding-right: 1rem;
 }
 
 .appbar {
-  background: #f7d736;
+  background: darkgray;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -114,14 +130,9 @@ body {
 
 }
 
-.container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 .form-card{
+  border-color: darkgray;
+  background-color:white;
   box-shadow: 0 5px 10px rgba(0,0,0,0.12), 0 5px 10px rgba(0,0,0,0.24);
   padding: .7rem;
   border-radius: .5rem;
@@ -131,13 +142,15 @@ body {
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  font-family: "Roboto", sans-serif;
+
 }
 
 .form-card-title{
+  background-color: white;
   border: none;
   font-size: 1.2rem;
-  font-weight: bold;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
 }
 
 .autoresize{
@@ -154,37 +167,46 @@ body {
 }
 
 .card {
-  background: #fff;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.12), 0 5px 10px rgba(0,0,0,0.24);
-  margin: 2rem;
-  height: 8rem;
-  width: 15rem;
-  font-family: 'Permanent Marker', cursive;
+  width: 12rem;
   display: flex;
   flex-direction: column;
-  justify-content: top;
-  text-align: left;
-  border-radius: 0.5rem;
+  align-items: center;
+  min-height: 20rem;
+  margin: 1rem 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "Arial";
+  background-color: lightgray;
 }
 
 .btn{
   border:none;
-  background: #f7d736;
+  background: darkgray;
   width:100%;
-  box-shadow: 0 2px 7px rgba(0,0,0,0.12), 0 2px 7px rgba(0,0,0,0.24);
   border-radius: 0.2rem;
   padding: 0.5rem;
-  margin: 0.2rem;
+  padding-left: 2rem;
+  cursor: pointer;
 }
 
-.btn_change{
+.btn_change {
+  background-color: red;
+  color:white;
   border:none;
-  background: #f7d736;
-  width:100%;
-  box-shadow: 0 2px 7px rgba(0,0,0,0.12), 0 2px 7px rgba(0,0,0,0.24);
   border-radius: 0.2rem;
-  padding: 0.5rem;
-  margin: 0.2rem;;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.12), 0 2px 7px rgba(0,0,0,0.24);
+  font-size: 0.8rem;
+}
+
+.btn_change:focus {     
+  background-color:darkred;    
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .card-container{
@@ -205,87 +227,21 @@ body {
 }
 
 .card-title {
-  color: #2c2c2c;
-  font-size: 1.2rem;
-  padding: .2rem;
   font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+  font-size: 1.2rem;
 }
 
 .card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
   color: #4c4c4c;
-  font-size: 0.8rem;
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
-  align-self: center;
+  font-size: .7rem;
+  padding: .5rem;
 }
 
-.card-color-1{
-  background-color:#ead3a7 
-}
-.card-color-2{
-  background-color:#9de0f5 
-}
-.card-color-3{
-  background-color:#ef89ba 
-}
-.card-color-4{
-  background-color:#fae890 
-}
-.card-color-5{
-  background-color:#abe9c1 
-}
 
-.card-rotation-1{
-  transform: rotate(1deg);
-
-}
-
-.card-rotation-2{
-  transform: rotate(2deg);
-
-}
-
-.card-rotation-3{
-  transform: rotate(3deg);
-
-}
-
-.card-rotation-4{
-  transform: rotate(4deg);
-
-}
-
-.card-rotation-5{
-  transform: rotate(5deg);
-
-}
-
-.card-rotation-6{
-  transform: rotate(-1deg);
-
-}
-
-.card-rotation-7{
-  transform: rotate(-2deg);
-
-}
-
-.card-rotation-8{
-  transform: rotate(-3deg);
-
-}
-
-.card-rotation-9{
-  transform: rotate(-4deg);
-
-}
-
-.card-rotation-10{
-  transform: rotate(-5deg);
-
-}
-
-.card-rotation-11{
-  transform: rotate(0deg);
-
-}

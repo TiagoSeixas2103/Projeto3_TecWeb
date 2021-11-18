@@ -2,23 +2,61 @@
 {% load static %}
 
 {% block content %}
-<img src="{% static 'vendas/img/logo-getit.png' %}" />
-<p>Como o Post-it, mas com outro verbo</p>
 
-<form method="post">
-  {% csrf_token %}
-  <label for="titulo">Título</label>
-  <input id="titulo" type="text" name="titulo" />
-  <label for="detalhes">Detalhes</label>
-  <textarea id="detalhes" name="detalhes"></textarea>
-  <input type="submit" />
-</form>
+<body>
 
-<ul>
-  {% for note in notes %}
-  <li>{{ note.title }}</li>
-  {% endfor %}
-</ul>
+  <div class="appbar">
+    <img src="{% static 'vendas/img/logo-getit.png' %}" class="logo" />
+    <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+  </div>
 
+  <main class="container">
+    
+
+    <form class="form-card" method="post">
+      {% csrf_token %}
+      <input
+            class="form-card-title"
+            type="text"
+            name="titulo"
+            placeholder="Funcionário"
+          />
+      <input
+            class="form-card-title"
+            type="text"
+            name="content"
+            placeholder="SKU do produto vendido"
+          />
+      <input
+            class="form-card-title"
+            type="number"
+            name="price"
+            placeholder="Valor do produto vendido"
+          />
+      <button class="btn" type="submit">Criar</button>
+    </form>
+
+    <ul class="card-container">
+      {% for film in films %}
+
+      <li class="card" key="{id}">
+        <h3 class="card-title" method="put">{{vendas.title}}</h3>
+        <div class="card-content">
+            <p class="card-content" method="put">{{vendas.content}}</p>
+        </div>
+        <form method = "post" action = "\delete">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{vendas.id}}" />
+          <button type="submit"class="btn_change">Deletar</button>
+        </form>
+      </li>
+
+      {% endfor %}
+  </ul>
+
+
+  </main>
+
+</body>
 
 {% endblock %}
