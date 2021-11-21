@@ -48,3 +48,7 @@ def put(request):
 def lucro(request):
     lucros = Venda.objects.all().aggregate(preco=Sum(F('price')*F('quantity')))
     return render(request, 'vendas/lucros.html', {'lucros': lucros})
+
+def sku(request):
+    skus = Venda.objects.values('content').annotate(preco=Sum(F('price')*F('quantity'))).order_by('content')
+    return render(request, 'vendas/skus.html', {'skus': skus})

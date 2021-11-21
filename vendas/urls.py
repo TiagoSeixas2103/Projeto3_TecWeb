@@ -7,5 +7,6 @@ urlpatterns = [
     path('post', views.index, name='index'),
     path('delete', views.delete, name='delete'),
     path('put', views.put, name='put'),
-    path('lucromensal', views.lucro, name='lucro')
+    path('lucromensal', views.lucro, name='lucro'),
+    path('skus', views.sku, name='skus'),
 ]

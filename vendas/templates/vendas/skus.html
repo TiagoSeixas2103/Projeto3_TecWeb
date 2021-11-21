@@ -15,12 +15,12 @@
 
   <main class="container">
     <ul class="card-container">
-      {% for lucro in lucros.values %}
-        <div class="container-lucro">
-            <h3 class="lucromensal" method="put">Lucro Mensal:</h3>
-            <h3 class="lucromensal" method="put">R${{lucro|floatformat:2}}</h3>
-        </div>  
-      {% endfor %}
+            {% for sku in skus %}
+                <div class="container-sku">
+                    <h3 class="sku-content" method="put">Lucro Mensal {{sku.content}}:</h3>
+                    <h3 class="sku-content" method="put">R${{sku.preco|floatformat:2}}</h3>
+                </div>  
+            {% endfor %}
   </ul>
 
 
