@@ -6,8 +6,8 @@
 <body>
 
   <div class="appbar">
-    <img src="{% static 'vendas/img/logo-getit.png' %}" class="logo" />
-    <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+    <img src="{% static 'vendas/img/logo-vendas.png' %}" class="logo" />
+    <span class="subtitle">Estatísticas de pequenos negócios</span>
   </div>
 
   <main class="container">
@@ -37,16 +37,16 @@
     </form>
 
     <ul class="card-container">
-      {% for film in films %}
+      {% for venda in vendas %}
 
       <li class="card" key="{id}">
-        <h3 class="card-title" method="put">{{vendas.title}}</h3>
+        <h3 class="card-title" method="put">{{venda.title}}</h3>
         <div class="card-content">
-            <p class="card-content" method="put">{{vendas.content}}</p>
+            <p class="card-content" method="put">{{venda.content}}</p>
         </div>
         <form method = "post" action = "\delete">
           {% csrf_token %}
-          <input type="hidden" name="id" value="{{vendas.id}}" />
+          <input type="hidden" name="id" value="{{venda.id}}" />
           <button type="submit"class="btn_change">Deletar</button>
         </form>
       </li>

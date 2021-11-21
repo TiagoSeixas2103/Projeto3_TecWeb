@@ -22,9 +22,9 @@ def delete(request):
         return redirect('index')
     else:
         all_vendas = Venda.objects.all()
-        return render(request, 'Vendas/index.html', {'vendas': all_vendas})
+        return render(request, 'vendas/index.html', {'vendas': all_vendas})
 
-def update(request):
+def put(request):
     if request.method == 'POST':
         id = request.POST.get('id')
         title = request.POST.get('titulo')
@@ -39,4 +39,4 @@ def update(request):
         return redirect('index')
     else:
         all_vendas = Venda.objects.all()
-        return render(request, 'Vendas/index.html', {'vendas': all_vendas})
+        return render(request, 'vendas/index.html', {'vendas': all_vendas})
