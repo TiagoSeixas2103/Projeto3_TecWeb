@@ -52,3 +52,7 @@ def lucro(request):
 def sku(request):
     skus = Venda.objects.values('content').annotate(preco=Sum(F('price')*F('quantity'))).order_by('content')
     return render(request, 'vendas/skus.html', {'skus': skus})
+
+def funcionarios(request):
+    funcionarios = Venda.objects.values('title').annotate(preco=Sum(F('price')*F('quantity'))).order_by('title')
+    return render(request, 'vendas/funcionarios.html', {'funcionarios': funcionarios})

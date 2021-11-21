@@ -269,7 +269,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 20rem;
+  min-height: 5rem;
   margin: 1rem 1rem;
   padding: 10px;
   border-radius: 5px;
@@ -285,5 +285,35 @@ a {
   flex-grow: 1;
   color: #4c4c4c;
   padding: .5rem;
+}
+
+.funcionario-card {
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 5rem;
+  margin: 1rem 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "Arial";
+  background-color: lightgray;
+}
+
+.funcionario-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #4c4c4c;
+}
+
+.funcionario-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font: bold;
+  color: #4c4c4c;
 }
 
