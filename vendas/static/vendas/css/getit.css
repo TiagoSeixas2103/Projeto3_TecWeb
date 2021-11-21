@@ -244,4 +244,23 @@ input:focus{
   padding: .5rem;
 }
 
+a {
+  background-color: #ffffff00;
+  padding: 0.5rem;
+  text-decoration: none;
+  color:black;
+  border:none;
+  border-radius: 0.2rem;
+
+}
+
+.lucromensal {
+  font-size: 4.5rem;
+}
+
+.container-lucro{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
