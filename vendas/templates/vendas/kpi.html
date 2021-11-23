@@ -17,11 +17,14 @@
 
   <main class="container">
     <ul class="card-container">
-            {% for funcionario in funcionarios %}
+            {% for lucratividade in lucratividade_operação.values %}
                 <div class="funcionario-card">
-                    <h3 class="funcionario-title" method="put">Funcionário {{funcionario.title}}</h3>
-                    <h3 class="funcionario-content" method="put">Lucro Mensal:</h3>
-                    <h3 class="funcionario-content" method="put">R${{funcionario.preco|floatformat:2}}</h3>
+                    <h3 class="funcionario-title" method="put">Lucratividade do Negócio: {{lucratividade|floatformat:2}}%</h3>
+                </div>  
+            {% endfor %}
+            {% for lucratividade in lucratividade_produto %}
+                <div class="funcionario-card">
+                    <h3 class="funcionario-title" method="put">Lucratividade de {{lucratividade.content}}: {{lucratividade.preco|floatformat:2}}%</h3>
                 </div>  
             {% endfor %}
   </ul>

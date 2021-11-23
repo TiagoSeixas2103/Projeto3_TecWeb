@@ -6,6 +6,7 @@ class Venda(models.Model):
     content = models.TextField()
     quantity = models.IntegerField()
     price = models.FloatField()
+    cost = models.FloatField()
     id = models.AutoField(primary_key=True)
 
     def __str__(self):

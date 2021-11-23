@@ -10,4 +10,5 @@ urlpatterns = [
     path('lucromensal', views.lucro, name='lucro'),
     path('skus', views.sku, name='skus'),
     path('funcionarios', views.funcionarios, name='funcionarios'),
+    path('kpi', views.kpi, name='kpi'),
 ]

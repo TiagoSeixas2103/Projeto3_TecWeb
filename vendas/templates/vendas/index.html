@@ -6,12 +6,13 @@
 <body>
 
   <div class="appbar">
-    <img src="{% static 'vendas/img/logo-vendas.png' %}" class="logo" />
+    <img src="{% static 'vendas/img/cash-register.png' %}" class="logo" />
     <span class="subtitle">Estatísticas de pequenos negócios</span>
     <a href="/">Página Inicial</a>
     <a href="/lucromensal">Lucro Mensal</a>
-    <a href="/funcionarios">Lucro Mensal por Funcionário</a>
+    <a href="/funcionarios">Receita por Funcionário</a>
     <a href="/skus">Lucro Mensal por SKU</a>
+    <a href="/kpi">Lucratividade</a>
   </div>
 
   <main class="container">
@@ -39,9 +40,13 @@
       />
       <input
             class="form-card-title"
-            type="number"
             name="price"
             placeholder="Valor do produto vendido"
+          />
+      <input
+            class="form-card-title"
+            name="cost"
+            placeholder="Custo de compra do produto"
           />
       <button class="btn" type="submit">Criar</button>
     </form>
@@ -55,6 +60,7 @@
             <p class="card-content" method="put">{{venda.content}}</p>
             <p class="card-content" method="put">{{venda.quantity}}</p>
             <p class="card-content" method="put">{{venda.price}}</p>
+            <p class="card-content" method="put">{{venda.cost}}</p>
         </div>
         <form method = "post" action = "\delete">
           {% csrf_token %}
