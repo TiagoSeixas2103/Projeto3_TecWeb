@@ -8,4 +8,4 @@ Checklist:
 <li> semana 3 - dar deploy do projeto finalizado <br>
 
 Arquitetura da aplicação:
-  !Página Inicial(https://github.com/TiagoSeixas2103/Projeto3_TecWeb/readmeImg/PaginaAppPaginaInicial.jpeg?raw=true)
+  ![Página Inicial](https://github.com/TiagoSeixas2103/Projeto3_TecWeb/readmeImg/PaginaAppPaginaInicial.jpeg?raw=true)
