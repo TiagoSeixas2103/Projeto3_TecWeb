@@ -21,7 +21,7 @@ Nós fizemos uma aplicação para que lojas consigam acompanhar o seu desempenho
 
 <li>Produtos - Na página dos produtos, estão exibidos os dados fornecidos sobre o produto pelo formulário.<br>
 
-![Produtos]https://github.com/TiagoSeixas2103/Projeto3_TecWeb/blob/main/readmeImg/PaginaAppProduto.png?raw=true)
+![Produtos](https://github.com/TiagoSeixas2103/Projeto3_TecWeb/blob/main/readmeImg/PaginaAppProduto.png?raw=true)
 
 <li>Lucro Mensal - Na página de lucro mensal, está exibido o lucro mensal calculado usando o preço de venda e o custo de todos os produtos da loja.<br>
 
