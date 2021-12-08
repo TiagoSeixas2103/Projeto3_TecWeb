@@ -115,7 +115,39 @@ def erro(request):
     return render(request, 'vendas/erro.html')
 
 def kpi(request):
-    lucratividade_operação = Venda.objects.all().aggregate(preco=100*(Sum(F('price')*F('quantity'))-Sum(F('cost')*F('quantity')))/Sum(F('price')*F('quantity')))
-    lucratividade_produto = Venda.objects.values('content').annotate(preco=100*(Sum(F('price')*F('quantity'))-Sum(F('cost')*F('quantity')))/Sum(F('price')*F('quantity'))).order_by('content')
+    lucro = 0
+    receita = 0
+    if Produto.objects.all() and Venda.objects.all():
+        for prod in Produto.objects.all():
+            if Venda.objects.filter(product=prod).exists():
+                quant = Venda.objects.filter(product = prod).values('quantity').aggregate(sum = Sum('quantity')).get('sum')
+            else:
+                quant = 0
+            lucro = lucro + prod.price * quant - prod.cost*quant
+            receita = receita + prod.price * quant
+    
+    skus = {}
+    if Produto.objects.all():
+        for prod in Produto.objects.all():
+            if prod.name in skus.keys():
+                pass
+            else:
+                if Venda.objects.filter(product=prod).exists():
+                    quant = Venda.objects.filter(product = prod).values("quantity").aggregate(sum = Sum('quantity')).get('sum')
+                else:
+                    quant = 0
+                skus[prod.name] = { 'lucro' :prod.price * quant - prod.cost*quant, 'receita':prod.price * quant}
+    
+    if receita > 0:
+        lucratividade_operação = lucro/receita*100
+    else:
+        lucratividade_operação = 0
+    if skus:
+        lucratividade_produto = {}
+        for prod, item in skus.items():
+            if item['receita']> 0:
+                lucratividade_produto[prod] = item['lucro']/item["receita"]*100
+            else:
+                lucratividade_produto[prod] = 0
     return render(request, 'vendas/kpi.html', {'lucratividade_operação': lucratividade_operação, 'lucratividade_produto': lucratividade_produto})
 

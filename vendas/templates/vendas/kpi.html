@@ -6,25 +6,24 @@
 <body>
 
   <div class="appbar">
-    <img src="{% static 'vendas/img/cash-register.png' %}" class="logo" />
+    <img src="https://cdn-icons-png.flaticon.com/512/4689/4689889.png" class="logo" />
     <span class="subtitle">Estatísticas de pequenos negócios</span>
     <a href="/">Página Inicial</a>
     <a href="/lucromensal">Lucro Mensal</a>
     <a href="/funcionarios">Receita por Funcionário</a>
     <a href="/skus">Lucro Mensal por SKU</a>
+    <a href="/produtos">Produtos</a>
     <a href="/kpi">Lucratividade</a>
   </div>
 
   <main class="container">
     <ul class="card-container">
-            {% for lucratividade in lucratividade_operação.values %}
                 <div class="funcionario-card">
-                    <h3 class="funcionario-title" method="put">Lucratividade do Negócio: {{lucratividade|floatformat:2}}%</h3>
+                    <h3 class="funcionario-title" method="put">Lucratividade do Negócio: {{lucratividade_operação|floatformat:2}}%</h3>
                 </div>  
-            {% endfor %}
-            {% for lucratividade in lucratividade_produto %}
+            {% for lucratividade, valor in lucratividade_produto.items %}
                 <div class="funcionario-card">
-                    <h3 class="funcionario-title" method="put">Lucratividade de {{lucratividade.content}}: {{lucratividade.preco|floatformat:2}}%</h3>
+                    <h3 class="funcionario-title" method="put">Lucratividade de {{lucratividade}}: {{valor|floatformat:2}}%</h3>
                 </div>  
             {% endfor %}
   </ul>
