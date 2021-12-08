@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-^e%0w5s=betm=3qc!kx(i8ox5@(xvg*=k*oqtsubfy7$us+wkm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rocky-depths-50359.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -75,14 +76,11 @@ WSGI_APPLICATION = 'projeto3.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'vendas',
-        'USER': 'vendasuser',
-        'PASSWORD': 'vendassenha',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://localhost/vendas?user=vendasuser&password=vendassenha',
+        conn_max_age=600,
+        ssl_require=not DEBUG
+    )
 }
 
 
