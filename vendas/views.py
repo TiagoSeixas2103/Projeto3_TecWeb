@@ -149,5 +149,7 @@ def kpi(request):
                 lucratividade_produto[prod] = item['lucro']/item["receita"]*100
             else:
                 lucratividade_produto[prod] = 0
+    else:
+        lucratividade_produto = {}
     return render(request, 'vendas/kpi.html', {'lucratividade_operação': lucratividade_operação, 'lucratividade_produto': lucratividade_produto})
 
