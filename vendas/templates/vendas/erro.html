@@ -17,13 +17,11 @@
 
   <main class="container">
     <ul class="card-container">
-            {% for funcionario, lucro in funcionarios.items %}
-                <div class="funcionario-card">
-                    <h3 class="funcionario-title" method="put">Funcionário {{funcionario}}</h3>
-                    <h3 class="funcionario-content" method="put">Lucro Mensal:</h3>
-                    <h3 class="funcionario-content" method="put">R${{lucro|floatformat:2}}</h3>
-                </div>  
-            {% endfor %}
+        <div class="container-lucro">
+            <h3 class="erro">Erro: Usuário tentou adicionar a venda de um produto não cadastrado</h3>
+            <h3 class="erro">Favor se dirigir a Produtos na barra de acesso</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" class="error" />
+        </div>  
   </ul>
 
 

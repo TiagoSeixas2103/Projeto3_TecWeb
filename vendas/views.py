@@ -1,58 +1,115 @@
 from django.shortcuts import render, redirect
 from django.db.models import F, Sum
-from .models import Venda
+from .models import Venda, Produto
 
 
 def index(request):
     if request.method == 'POST':
         title = request.POST.get('titulo')
-        content = request.POST.get('content')
+        product = request.POST.get('product')
         quantity = request.POST.get('quantity')
-        price = request.POST.get('price')
         # TAREFA: Utilize o title e content para criar um novo Venda no banco de dados
-        film = Venda(title = title, content = content, quantity = quantity, price = price)
-        film.save()
+        if Produto.objects.filter(name = product).exists():
+            print('has')
+            prod = Produto.objects.get(name = product)
+        else:
+            return redirect('erro')
+        film = Venda.objects.create(title = title, quantity = quantity)
+        film.product.add(prod.id)
+        print(Venda.product)
         return redirect('index')
     else:
-        all_vendas = Venda.objects.all()
+        all_vendas = Venda.objects.order_by('title')
         return render(request, 'vendas/index.html', {'vendas': all_vendas})
 
-def delete(request):
+def delete_Vendas(request):
     if request.method == 'POST':
         id = request.POST.get('id')
         Venda.objects.filter(id=id).delete()
         return redirect('index')
     else:
-        all_vendas = Venda.objects.all()
+        all_vendas = Venda.objects.order_by('title')
         return render(request, 'vendas/index.html', {'vendas': all_vendas})
 
 def put(request):
     if request.method == 'POST':
         id = request.POST.get('id')
         title = request.POST.get('titulo')
-        content = request.POST.get('content')
+        product = request.POST.get('product')
         quantity = request.POST.get('quantity')
-        price = request.POST.get('price')
         new_venda = Venda()
         new_venda.title = title
-        new_venda.content = content
+        new_venda.product = product
         new_venda.quantity = quantity
-        new_venda.price = price
         new_venda.id = id
         new_venda.save()
         return redirect('index')
     else:
-        all_vendas = Venda.objects.all()
+        all_vendas = Venda.objects.order_by('title')
         return render(request, 'vendas/index.html', {'vendas': all_vendas})
 
 def lucro(request):
-    lucros = Venda.objects.all().aggregate(preco=Sum(F('price')*F('quantity')))
+    lucros = {}
+    total = 0
+    lucros["Total"] = 0
+    if Produto.objects.all() and Venda.objects.all():
+        for prod in Produto.objects.all():
+            quant = Venda.objects.filter(product = prod).values('quantity').aggregate(sum = Sum('quantity')).get('sum')
+            total = total + prod.price * quant - prod.cost*quant
+    lucros["Total"] = total
+
     return render(request, 'vendas/lucros.html', {'lucros': lucros})
 
 def sku(request):
-    skus = Venda.objects.values('content').annotate(preco=Sum(F('price')*F('quantity'))).order_by('content')
+    skus = {}
+    if Produto.objects.all():
+        for prod in Produto.objects.all():
+            if prod.name in skus.keys():
+                pass
+            else:
+                if Venda.objects.all():
+                    quant = Venda.objects.filter(product = prod).values("quantity").aggregate(sum = Sum('quantity')).get('sum')
+                else:
+                    quant = 0
+                skus[prod.name] = { 'lucro' :prod.price * quant - prod.cost*quant, 'quantidade':quant}
     return render(request, 'vendas/skus.html', {'skus': skus})
 
+
 def funcionarios(request):
-    funcionarios = Venda.objects.values('title').annotate(preco=Sum(F('price')*F('quantity'))).order_by('title')
+    funcionarios = {}
+    if Produto.objects.all() and Venda.objects.all():
+        for func in Venda.objects.all():
+            temp = 0
+            if func.title in funcionarios.keys():
+                pass
+            else:
+                for prod in Venda.objects.filter(title=func.title).values("product"):
+                    preco = Produto.objects.filter(id = prod['product']).values("price")[0]['price']
+                    custo = Produto.objects.filter(id = prod['product']).values("cost")[0]['cost']
+                    quant = Venda.objects.filter(title=func.title, product = prod['product']).values("quantity").aggregate(sum = Sum('quantity')).get('sum')
+                    temp = temp + preco*quant-custo*quant
+                funcionarios[func.title] = temp
     return render(request, 'vendas/funcionarios.html', {'funcionarios': funcionarios})
+
+def produtos(request):
+    if request.method == 'POST':
+        name = request.POST.get('nome')
+        price = request.POST.get('preco')
+        cost = request.POST.get('custo')
+        film = Produto.objects.create(name = name, price = price, cost = cost)
+        return redirect('produtos')
+    else:
+        all_produtos = Produto.objects.order_by('name')
+        return render(request, 'vendas/produtos.html', {'produtos': all_produtos})
+
+def delete_Produto(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        Produto.objects.filter(id=id).delete()
+        return redirect('produtos')
+    else:
+        all_produtos = Produto.objects.order_by('name')
+        return render(request, 'vendas/produtos.html', {'produtos': all_produtos})
+
+def erro(request):
+    return render(request, 'vendas/erro.html')

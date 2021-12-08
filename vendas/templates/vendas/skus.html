@@ -6,20 +6,28 @@
 <body>
 
   <div class="appbar">
-    <img src="{% static 'vendas/img/logo-vendas.png' %}" class="logo" />
+    <img src="https://cdn-icons-png.flaticon.com/512/4689/4689889.png" class="logo" />
     <span class="subtitle">Estatísticas de pequenos negócios</span>
     <a href="/">Página Inicial</a>
     <a href="/lucromensal">Lucro Mensal</a>
     <a href="/funcionarios">Lucro Mensal por Funcionário</a>
     <a href="/skus">Lucro Mensal por SKU</a>
+    <a href="/produtos">Produtos</a>
   </div>
 
   <main class="container">
     <ul class="card-container">
-            {% for sku in skus %}
+            {% for sku, infos in skus.items %}
                 <div class="container-sku">
-                    <h3 class="sku-content" method="put">Lucro Mensal {{sku.content}}:</h3>
-                    <h3 class="sku-content" method="put">R${{sku.preco|floatformat:2}}</h3>
+                    <h3 class="sku-content" method="put">Lucro Mensal {{sku}}:</h3>
+                    {% for key, info in infos.items%}
+                      {% if key == "lucro" %}
+                        <h3 class="sku-content" method="put">R${{info|floatformat:2}}</h3>
+                      {% else %}
+                        <h3 class="sku-content" method="put">Quantidade: {{info}}</h3>
+                      {% endif %}
+                    {% endfor %}
+
                 </div>  
             {% endfor %}
   </ul>
