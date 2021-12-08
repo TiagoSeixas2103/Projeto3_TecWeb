@@ -1,0 +1,64 @@
+{% extends "vendas/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<body>
+
+  <div class="appbar">
+    <img src="https://cdn-icons-png.flaticon.com/512/4689/4689889.png" class="logo" />
+    <span class="subtitle">Estatísticas de pequenos negócios</span>
+    <a href="/">Página Inicial</a>
+    <a href="/lucromensal">Lucro Mensal</a>
+    <a href="/funcionarios">Lucro Mensal por Funcionário</a>
+    <a href="/skus">Lucro Mensal por SKU</a>
+    <a href="/produtos">Produtos</a>
+  </div>
+
+  <main class="container">
+    <form class="form-card" method="post">
+        {% csrf_token %}
+        <input
+              class="form-card-title"
+              type="text"
+              name="nome"
+              placeholder="Nome do Produto"
+            />
+        <input
+              class="form-card-title"
+              type="text"
+              name="preco"
+              placeholder="Preço de Venda"
+            />
+        <input
+              class="form-card-title"
+              type="text"
+              name="custo"
+              placeholder="Custo de Venda"
+        />
+        <button class="btn" type="submit">Criar</button>
+    </form>
+    <ul class="card-container">
+        {% for produto in produtos %}
+            <li class="funcionario-card" key={id}>
+                <h3 class="funcionario-title" method="put">Produto: {{produto.name}}</h3>
+                <h3 class="funcionario-content" method="put">Preço:</h3>
+                <h3 class="funcionario-content" method="put">R${{produto.price|floatformat:2}}</h3>
+                <h3 class="funcionario-content" method="put">Custo:</h3>
+                <h3 class="funcionario-content" method="put">R${{produto.cost|floatformat:2}}</h3>
+                </div>
+                <form method = "post" action = "\delete_Produto">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{produto.id}}" />
+                    <button type="submit"class="btn_change">Deletar</button>
+                </form>
+            </li>  
+        {% endfor %}
+  </ul>
+
+
+  </main>
+
+</body>
+
+{% endblock %}

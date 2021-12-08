@@ -6,20 +6,21 @@
 <body>
 
   <div class="appbar">
-    <img src="{% static 'vendas/img/cash-register.png' %}" class="logo" />
+    <img src="https://cdn-icons-png.flaticon.com/512/4689/4689889.png" class="logo" />
     <span class="subtitle">Estatísticas de pequenos negócios</span>
     <a href="/">Página Inicial</a>
     <a href="/lucromensal">Lucro Mensal</a>
     <a href="/funcionarios">Receita por Funcionário</a>
     <a href="/skus">Lucro Mensal por SKU</a>
+    <a href="/produtos">Produtos</a>
     <a href="/kpi">Lucratividade</a>
   </div>
 
   <main class="container">
     <ul class="card-container">
-      {% for lucro in lucros.values %}
+      {% for produto, lucro in lucros.items %}
         <div class="container-lucro">
-            <h3 class="lucromensal" method="put">Lucro Mensal:</h3>
+            <h3 class="lucromensal" method="put">Lucro Mensal {{produto}}:</h3>
             <h3 class="lucromensal" method="put">R${{lucro|floatformat:2}}</h3>
         </div>  
       {% endfor %}

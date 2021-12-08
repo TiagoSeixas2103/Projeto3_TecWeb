@@ -5,13 +5,14 @@
 
 <body>
 
-  <div class="appbar">
-    <img src="{% static 'vendas/img/cash-register.png' %}" class="logo" />
+  <div class="appbar">s
+    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/4689/4689889.png" alt=""/>
     <span class="subtitle">Estatísticas de pequenos negócios</span>
     <a href="/">Página Inicial</a>
     <a href="/lucromensal">Lucro Mensal</a>
     <a href="/funcionarios">Receita por Funcionário</a>
     <a href="/skus">Lucro Mensal por SKU</a>
+    <a href="/produtos">Produtos</a>
     <a href="/kpi">Lucratividade</a>
   </div>
 
@@ -29,8 +30,8 @@
       <input
             class="form-card-title"
             type="text"
-            name="content"
-            placeholder="SKU do produto vendido"
+            name="product"
+            placeholder="Produto vendido"
           />
       <input
             class="form-card-title"
@@ -38,31 +39,21 @@
             name="quantity"
             placeholder="Quantidade de produtos vendidos no mês"
       />
-      <input
-            class="form-card-title"
-            name="price"
-            placeholder="Valor do produto vendido"
-          />
-      <input
-            class="form-card-title"
-            name="cost"
-            placeholder="Custo de compra do produto"
-          />
+      <input type="hidden" name="id" value="0" />
       <button class="btn" type="submit">Criar</button>
     </form>
 
     <ul class="card-container">
       {% for venda in vendas %}
 
-      <li class="card" key="{id}">
-        <h3 class="card-title" method="put">{{venda.title}}</h3>
-        <div class="card-content">
-            <p class="card-content" method="put">{{venda.content}}</p>
-            <p class="card-content" method="put">{{venda.quantity}}</p>
-            <p class="card-content" method="put">{{venda.price}}</p>
-            <p class="card-content" method="put">{{venda.cost}}</p>
+      <li class="funcionario-card" key="{id}">
+        <h3 class="funcionario-title" method="put">{{venda.title}}</h3>
+        <div class="funcionario-content">
+            <p class="funcionario-content" method="put">Quantidade: {{venda.quantity}}</p>
+            <p class="funcionario-content" method="put">Produto: {{venda.product.get}}</p>
+
         </div>
-        <form method = "post" action = "\delete">
+        <form method = "post" action = "\delete_Vendas">
           {% csrf_token %}
           <input type="hidden" name="id" value="{{venda.id}}" />
           <button type="submit"class="btn_change">Deletar</button>
