@@ -13,4 +13,4 @@ urlpatterns = [
     path('produtos', views.produtos, name='produtos'),
     path('delete_Produto', views.delete_Produto, name='delete_Produto'),
     path('erro', views.erro, name='erro')
-]
+    path('kpi', views.kpi, name='kpi'),

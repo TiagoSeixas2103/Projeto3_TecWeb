@@ -113,3 +113,9 @@ def delete_Produto(request):
 
 def erro(request):
     return render(request, 'vendas/erro.html')
+
+def kpi(request):
+    lucratividade_operação = Venda.objects.all().aggregate(preco=100*(Sum(F('price')*F('quantity'))-Sum(F('cost')*F('quantity')))/Sum(F('price')*F('quantity')))
+    lucratividade_produto = Venda.objects.values('content').annotate(preco=100*(Sum(F('price')*F('quantity'))-Sum(F('cost')*F('quantity')))/Sum(F('price')*F('quantity'))).order_by('content')
+    return render(request, 'vendas/kpi.html', {'lucratividade_operação': lucratividade_operação, 'lucratividade_produto': lucratividade_produto})
+
