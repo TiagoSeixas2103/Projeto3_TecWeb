@@ -3,9 +3,11 @@
 <li> Tiago Seixas <br>
 
 Checklist:
-<li> semana 1 - preparar base django do projeto, fazer o projeto usar docker como database <br>
-<li> semana 2 - criar funcionalidades, criar páginas das funcionalidades <br>
-<li> semana 3 - dar deploy do projeto finalizado <br>
+<li> Semana 1 - Preparar base django do projeto, fazer o projeto usar docker como database <br>
+<li> Semana 2 - Criar funcionalidades, criar páginas das funcionalidades <br>
+<li> Semana 3 - Dar deploy do projeto finalizado <br>
+  
+Link do deploy: https://rocky-depths-50359.herokuapp.com/
 
 # Arquitetura da aplicação:
 
